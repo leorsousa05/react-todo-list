@@ -1,0 +1,32 @@
+#todolist-inputs {
+    width: auto;
+    min-width: 40rem;
+    height: 7rem;
+    background-color: white;
+    display: grid;
+    place-items: center;
+    border: 1px solid #5315fc81;
+    border-bottom: none;
+}
+
+#todo-container input[type=text] {
+    border: 1px solid #875fff7c;
+    border-radius: 4px;
+    padding: 1rem 4rem 1rem .5rem;
+    margin-right: .3rem;
+    font-size: 1rem;
+}
+
+#todo-container button {
+    cursor: pointer;
+    border: 1px solid #875fff7c;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    background-color: white;
+    color: #39334ad4;
+}
+
+#todo-container input::placeholder {
+    color: #39334ad4;
+}
