@@ -12,6 +12,7 @@
 }
 
 #todo-list-container {
+    width: 30rem;
     box-shadow: 14px 16px 0 #121212ca;
 }
 
@@ -19,7 +20,8 @@
     overflow-y: scroll;
     scrollbar-width: auto;
     scrollbar-color: #b8b8b8 #ffffff;
-    height: 40rem;
+    height: 30rem;
+    max-width: 50rem;
     border: 1px solid #5315fc81;
     background-color: white;
 }
@@ -92,4 +94,36 @@ s {
 .button-group p {
     font-family: sans-serif;
     padding: 0 6px;
+}
+
+@media screen and (max-width: 540px) {
+    html {
+        font-size: 14px;
+    }
+
+    #todo-list-container {
+        width: 20rem;
+    }
+
+    #todo-list {
+        height: 25rem;
+    }
+
+    .todo-item {
+        padding-right: 0;
+    }
+
+    .button-group {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .button-group button {
+        margin: .2rem;
+        font-size: 10px;
+    }
+
+    .button-group p {
+        display: none;
+    }
 }

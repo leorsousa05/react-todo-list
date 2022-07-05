@@ -9,3 +9,10 @@ body {
   height: 100vh;
   background-color: #5215fc;
 }
+
+@media screen and (max-width: 540px) {
+  body {
+    place-items: unset;
+    justify-content: center;
+  }
+}
