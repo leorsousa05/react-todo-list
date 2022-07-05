@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/react-todo-list/static/css/main.c7fc4a51.css",
+    "main.js": "/react-todo-list/static/js/main.3a152155.js",
+    "static/media/Early-GameBoy.woff": "/react-todo-list/static/media/Early-GameBoy.28624a86e284d88006d9.woff",
+    "index.html": "/react-todo-list/index.html",
+    "main.c7fc4a51.css.map": "/react-todo-list/static/css/main.c7fc4a51.css.map",
+    "main.3a152155.js.map": "/react-todo-list/static/js/main.3a152155.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c7fc4a51.css",
+    "static/js/main.3a152155.js"
+  ]
+}
