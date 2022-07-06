@@ -1,19 +1,15 @@
+import { isEmptyObject } from "jquery";
 import React, { useEffect, useState } from "react";
 import TodoList from "../TodoList/TodoList";
 import "./AllTodos.css"
 
 function AllTodos() {
     const [tasks, setTasks] = useState([{name: "", status: false}])
-    const [tempTasks, setTempTasks] = useState([{name: "", status: false}])
+    const [tempTasks, setTempTasks] = useState(JSON.parse(localStorage.getItem("tasks")))
 
     function handleNewTask(task) {
         let tempTask = {name: task, status: false}
-        setTempTasks([...tempTasks, tempTask])
-    }
-
-    function temporaryVariable(task) {
-        let tempTask = {name: task, status: false}
-        return tempTask
+        isEmptyObject(tempTasks) ? setTempTasks([tempTask]) : setTempTasks([...tempTasks, tempTask])
     }
     
     function handleDelete(key) {
@@ -22,15 +18,16 @@ function AllTodos() {
     }
 
     function handleConclude(key) {
-        setTasks(tasks.map((task) => key === tasks.indexOf(task) ? {name: task.name, status: true} : {name: task.name, status: false}))
+        setTempTasks(tempTasks.map((task) => key === tempTasks.indexOf(task) ? {name: task.name, status: true} : {name: task.name, status: false}))
     }
 
     function handleDesconclude(key) {
-        setTasks(tasks.map((task) => key === tasks.indexOf(task) ? {name: task.name, status: false} : {name: task.name, status: false}))
+        setTempTasks(tempTasks.map((task) => key === tempTasks.indexOf(task) ? {name: task.name, status: false} : {name: task.name, status: false}))
     }
 
     useEffect(() => {
-        localStorage.setItem("tasks", JSON.stringify([...tempTasks]))
+        console.log(tempTasks)
+        tempTasks !== null && localStorage.setItem("tasks", JSON.stringify([...tempTasks]))
         setTasks(JSON.parse(localStorage.getItem("tasks")))
     }, [tempTasks])
 
@@ -38,11 +35,11 @@ function AllTodos() {
         <div id="todo">
             <h1>To Do List</h1>
             <div id="todo-list-container">
-                <TodoList todo={handleNewTask} tasks={temporaryVariable} />
+                <TodoList todo={handleNewTask} />
                 <div id="todo-list">
                     <ul>
-                        {tasks.map((task, index) => {
-                            return ( 
+                        {tasks !== null && tasks.map((task, index) => {
+                            return (
                             task.name !== "" &&
                                 <div key={index} className="todo-item"> 
                                     {task.status === true ? <li><s>{task.name}</s></li> : <li>{task.name}</li> }
