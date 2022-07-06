@@ -4,10 +4,11 @@ import "./AllTodos.css"
 
 function AllTodos() {
     const [tasks, setTasks] = useState([{name: "", status: false}])
+    const [tempTasks, setTempTasks] = useState([{name: "", status: false}])
 
     function handleNewTask(task) {
         let tempTask = {name: task, status: false}
-        setTasks([...tasks, tempTask])
+        setTempTasks([...tempTasks, tempTask])
     }
 
     function temporaryVariable(task) {
@@ -17,6 +18,7 @@ function AllTodos() {
     
     function handleDelete(key) {
         setTasks([...tasks.filter((task) => key !== tasks.indexOf(task))])
+        setTempTasks([...tempTasks.filter((task) => key !== tempTasks.indexOf(task))])
     }
 
     function handleConclude(key) {
@@ -28,8 +30,9 @@ function AllTodos() {
     }
 
     useEffect(() => {
-        localStorage.setItem("tasks", JSON.stringify([...tasks, tempVar]))
-    }, [tasks])
+        localStorage.setItem("tasks", JSON.stringify([...tempTasks]))
+        setTasks(JSON.parse(localStorage.getItem("tasks")))
+    }, [tempTasks])
 
     return(
         <div id="todo">
@@ -41,8 +44,8 @@ function AllTodos() {
                         {tasks.map((task, index) => {
                             return ( 
                             task.name !== "" &&
-                                <div className="todo-item"> 
-                                    {task.status === true ? <li key={index}><s>{task.name}</s></li> : <li key={index}>{task.name}</li> }
+                                <div key={index} className="todo-item"> 
+                                    {task.status === true ? <li><s>{task.name}</s></li> : <li>{task.name}</li> }
                                     <div className="button-group">
                                         <button onClick={event => handleDelete(index)}>Delete</button>
                                         <p> - </p>
