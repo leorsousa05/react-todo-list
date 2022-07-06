@@ -3,10 +3,16 @@ import TodoList from "../TodoList/TodoList";
 import "./AllTodos.css"
 
 function AllTodos() {
-    const [tasks, setTasks] = useState([{name: ""}])
+    const [tasks, setTasks] = useState([{name: "", status: false}])
 
     function handleNewTask(task) {
-        setTasks([...tasks, {name: task, status: false}])
+        let tempTask = {name: task, status: false}
+        setTasks([...tasks, tempTask])
+    }
+
+    function temporaryVariable(task) {
+        let tempTask = {name: task, status: false}
+        return tempTask
     }
     
     function handleDelete(key) {
@@ -22,14 +28,14 @@ function AllTodos() {
     }
 
     useEffect(() => {
-        console.log(tasks)
+        localStorage.setItem("tasks", JSON.stringify([...tasks, tempVar]))
     }, [tasks])
 
     return(
         <div id="todo">
             <h1>To Do List</h1>
             <div id="todo-list-container">
-                <TodoList todo={handleNewTask} />
+                <TodoList todo={handleNewTask} tasks={temporaryVariable} />
                 <div id="todo-list">
                     <ul>
                         {tasks.map((task, index) => {

@@ -25,6 +25,7 @@ const TodoList = (props) => {
     const handleSubmit = (event) => {
         event.preventDefault()
         props.todo(task.task)
+        props.tasks(task.task)
         setTask({task: ""})
     }
 
