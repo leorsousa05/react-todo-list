@@ -1,13 +1,14 @@
 import React from "react";
 import AllTodos from "./components/AllTodos/AllTodos";
+import { TodoContextProvider } from "./hooks/useTodo"
 
 function App() {
   return (
-    <div className="App">
-      <div id="Todo">
-        <AllTodos />
+    <TodoContextProvider >
+      <div className="App">
+          <AllTodos />
       </div>
-    </div>
+    </TodoContextProvider>
   );
 }
 
