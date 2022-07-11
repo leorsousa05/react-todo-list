@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import TodoList from "../TodoList/TodoList";
-import { TodoContext } from "../../hooks/useTodo";
+import { useTodo } from "../../hooks/useTodo";
 import "./AllTodos.css"
 
 function AllTodos() {
 	const [tasks, setTasks] = useState([{ name: "", status: false }])
-	const { tempTasks, setTempTasks, handleConclude, handleDesconclude, handleNewTask } = useContext(TodoContext)
+	const { tempTasks, setTempTasks, handleConclude, handleDesconclude, handleNewTask } = useTodo()
 
 	function handleDelete(key) {
 		setTasks([...tasks.filter((task) => key !== tasks.indexOf(task))])
@@ -13,9 +13,9 @@ function AllTodos() {
 	}
 
 	useEffect(() => {
-		localStorage.setItem("tasks", JSON.stringify([...tempTasks]))
+		tempTasks !== null && localStorage.setItem("tasks", JSON.stringify([...tempTasks]))
 		setTasks(JSON.parse(localStorage.getItem("tasks")))
-	}, [tempTasks])
+	}, [tempTasks]);
 
 	return (
 		<div id="todo">
